@@ -1,9 +1,10 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/03e693e8-d028-4899-8898-aad9d19374e7" alt="CAMS logo" width="250"/>
+  <img src="https://github.com/user-attachments/assets/61fd8e25-30b8-4380-a52a-27e651bb75d3" alt="CAMS logo" width="250"/>
 </p>
 ##  Usage
 
 ### Step-by-step
+
 
 1. **Upload PGN files**:
    - Upload the PGN of the player you want to analyze (suspect).
