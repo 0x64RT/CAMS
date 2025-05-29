@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/61fd8e25-30b8-4380-a52a-27e651bb75d3" alt="CAMS logo" width="250"/>
+  <img src="https://github.com/user-attachments/assets/61fd8e25-30b8-4380-a52a-27e651bb75d3" alt="CAMS logo" width="550"/>
 </p>
 ##  Usage
 
