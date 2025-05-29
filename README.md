@@ -7,7 +7,7 @@
 
 1. **Upload PGN files**:
    - Upload the PGN of the player you want to analyze (suspect).
-   - Upload a PGN from a reference group (same rating, similar time control, etc.).
+   - Upload a PGN from a reference group (same rating, similar time control, etc.).Software already comes with some small dataset from some ELOs.
 
 2. **Configure analysis parameters**:
    - `Player name`: exact name to analyze.
