@@ -24,15 +24,15 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 import pandas as pd
 
-MAX_CP     = 1000          # valor máximo cuando type=="mate"
-ADV_MARGIN = 150           # ±150 cp ⇒ igualdad / ventaja
+MAX_CP     = 1000          # maximum value when type=="mate"
+ADV_MARGIN = 150           # ±150 cp ⇒ equality / advantage
 Z_LINES    = [2.0, 2.5, 3.5]
 
 st.set_page_config(page_title="CP-Loss & Win-Rate Analyzer", layout="wide")
 st.title("🏁 CP-Loss & Win-Rate Analyzer")
 
 # ──────────────────────────────────────────────────────────────
-#  Carga de PGN (con caché)
+#  Loading PGN (with cache)
 # ──────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_games(pgn_bytes):
@@ -46,8 +46,9 @@ def load_games(pgn_bytes):
     return games
 
 # ──────────────────────────────────────────────────────────────
-#  Único recorrido: fases, ventaja, jugadas
+#  Single route: phases, advantage, plays
 # ──────────────────────────────────────────────────────────────
+
 def compute_all_stats(games, depth, skip_plies, mode, player_name, prog_bar, workers):
     """
     Devuelve ocho arrays:
@@ -72,7 +73,7 @@ def compute_all_stats(games, depth, skip_plies, mode, player_name, prog_bar, wor
             best = sf.get_evaluation()
             board.push(mv)
 
-            # filtrar turno ajeno
+            # filter other people's turn
             if mode == "include":
                 color_player = chess.WHITE if w == player_name else chess.BLACK
                 if not ((j % 2 == 0 and color_player == chess.WHITE) or
@@ -137,7 +138,7 @@ def compute_all_stats(games, depth, skip_plies, mode, player_name, prog_bar, wor
     return [np.array(a) for a in outs]
 
 # ──────────────────────────────────────────────────────────────
-#  Resultados y ELO
+#  Results and ELO
 # ──────────────────────────────────────────────────────────────
 def compute_results_and_elos(games, player_name):
     res, opp, sus = [], [], []
@@ -153,7 +154,7 @@ def compute_results_and_elos(games, player_name):
     return np.array(res), np.array(opp), np.array(sus)
 
 # ──────────────────────────────────────────────────────────────
-#  UI – Barra lateral
+#  UI 
 # ──────────────────────────────────────────────────────────────
 st.sidebar.header("Configuración")
 sus_file   = st.sidebar.file_uploader("PGN sospechoso", type="pgn")
