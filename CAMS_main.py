@@ -1,15 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-CP-Loss & Win-Rate Analyzer  —  versión completa (mayo-2025)
 
-Novedades
-─────────
-✓ Un único recorrido del motor (sin doble evaluación)  
-✓ Skip plies configurable en la barra lateral  
-✓ Z-robusto ignora partidas con 0 movimientos válidos  
-✓ Histogramas normalizados a **porcentaje** para comparar grupos de
-  tamaño distinto (histnorm="percent")  
-"""
 
 import streamlit as st
 import numpy as np
@@ -179,7 +169,7 @@ if run:
     sus_games = load_games(sus_file.getvalue())
     ref_games = load_games(ref_file.getvalue())
 
-    # ─── sospechoso ───
+    # ─── suspect ───
     st.subheader("Procesando partidas del sospechoso…")
     p1 = st.progress(0.0)
     (sus_gl,sus_op,sus_md,sus_ed,
@@ -187,7 +177,7 @@ if run:
         sus_games, depth, skip_plies, "include", sus_name, p1, workers)
     p1.empty()
 
-    # ─── referencia ───
+    # ─── reference ───
     st.subheader("Procesando partidas de referencia…")
     p2 = st.progress(0.0)
     (ref_gl,ref_op,ref_md,ref_ed,
@@ -195,7 +185,7 @@ if run:
         ref_games, depth, skip_plies, "exclude", ref_skip, p2, workers)
     p2.empty()
 
-    # ─── métricas globales ───
+    # ─── global metrics ───
     results, opp_elos, sus_elos = compute_results_and_elos(sus_games, sus_name)
     wins, total = int(results.sum()), len(results)
     p0 = (1/(1+10**((opp_elos - sus_elos)/400))).mean() if opp_elos.size else np.nan
@@ -207,7 +197,7 @@ if run:
     c4.metric("p₀ esperada", "n/a" if np.isnan(p0) else f"{p0:.3f}")
 
     # ──────────────────────────────────────────────────────────
-    #  PESTAÑAS
+    #  Tabs
     # ──────────────────────────────────────────────────────────
     tabs = st.tabs([
         "Segmentation & KS","Hist+QQ","Fligner–Killeen",
