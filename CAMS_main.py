@@ -111,7 +111,7 @@ def compute_all_stats(games, depth, skip_plies, mode, player_name, prog_bar, wor
             mean0(gl),
             mean0(op), mean0(md), mean0(ed),
             mean0(eq), mean0(lose), mean0(win),
-            len(gl)  # jugadas consideradas
+            len(gl)  
         )
 
     outs  = None
@@ -278,7 +278,7 @@ if run:
             fig_q.add_annotation(text="Insufficient data",xref="paper",yref="paper",showarrow=False)
         st.plotly_chart(fig_q,use_container_width=True)
 
-    # —— 2 · Fligner–Killeen —— (sin cambios) ——————————————
+    # —— 2 · Fligner–Killeen ————————————————
     with tabs[2]:
         chi2,pf = stats.fligner(sus_gl,ref_gl)
         fig_f = go.Figure()
@@ -288,7 +288,7 @@ if run:
                             yaxis_title="CP-loss mean")
         st.plotly_chart(fig_f,use_container_width=True)
 
-    # —— 3 · Mann–Whitney U —— (sin cambios) ————————————
+    # —— 3 · Mann–Whitney U ——————————————
     with tabs[3]:
         U,pmw = stats.mannwhitneyu(sus_gl,ref_gl,alternative="two-sided")
         fig_mw = go.Figure()
@@ -298,7 +298,7 @@ if run:
                              yaxis_title="CP-loss mean")
         st.plotly_chart(fig_mw,use_container_width=True)
 
-    # —— 4 · Control Chart —— (sin cambios) ——————————————
+    # —— 4 · Control Chart ————————————————
     with tabs[4]:
         mean_r  = np.nanmean(ref_gl)
         lower_r = max(np.nanpercentile(ref_gl,10),0)
@@ -314,7 +314,7 @@ if run:
                              xaxis_title="Game #",yaxis_title="CP-loss mean")
         st.plotly_chart(fig_cc,use_container_width=True)
 
-    # —— 5 · Bayes Win-Rate + CP —— (sin cambios) ——————————
+    # —— 5 · Bayes Win-Rate + CP ————————————
     with tabs[5]:
         if total>0 and not np.isnan(p0):
             alpha0,beta0 = 1,1
@@ -339,8 +339,8 @@ if run:
         else:
             st.warning("Insufficient data for Bayes.")
 
-    # —— 6 · Tiempo vs. desviación —— (idéntico) ————————————
-    # Se omite por brevedad, igual que antes
+    # —— 6 · Tiempo vs. desviación ——————————————
+   
     with tabs[6]:
         st.subheader("Tiempo medio vs. desviación estándar por resultado")
         col1, col2 = st.columns(2)
